@@ -1,0 +1,128 @@
+.HText {
+    font-size: 2vw;
+    color: #f8faff;
+    font-weight: bold;
+  }
+  .NameT {
+    margin-top: 1.2vw;
+    font-size: 1.2vw;
+    color: #f8faff;
+    font-weight: bold;
+  }
+  .NameTree {
+    font-size: 1.1vw;
+    color: #f8faff;
+  }
+  .ImgSizeTypeT {
+    height: 10vw;
+    width: 15vw;
+  }
+  .ImgSizeT {
+    height: 10vw;
+    margin-bottom: 1vw;
+  }
+  .SixeBox {
+    width: 10vw;
+  }
+  .container {
+    max-width: 80%;
+  }
+  
+  .TextTName{
+    font-size: 1.5vw !important;
+  }
+  .TextTDetail{
+    font-size: 1.35vw !important;
+  }
+  .NumColor{
+    color: rgb(249, 249, 32);
+  }
+  
+  .BGConHome {
+    background-image: url("../../../../assets/img/pexels-photo-807598.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+  }
+  
+  .BGtextCon {
+    background: linear-gradient(0.25turn, #f8faff60, #1ab76e3d, #f8faff60);
+  }
+  
+  .RdImg {
+    border-radius: 1vw;
+  }
+  .RdImgTd {
+    border-radius: 1vw;
+    cursor: pointer;
+  }
+  .BGInfoTd {
+      background: radial-gradient(circle, rgb(119, 184, 181) 0%, rgba(118, 177, 156, 0.803) 100%);
+  }
+  
+  .tooltip-text {
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    width: 15vw;
+    color: white;
+    font-size: 1.2vw;
+    background-color: #192733;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+  }
+  
+  .hover-text:hover .tooltip-text {
+    visibility: visible;
+  }
+  #bottom {
+    top: 1vw;
+    left: -5vw;
+  }
+  .hover-text {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    margin: 0px;
+    font-family: Avenir;
+    text-align: center;
+  }
+  .ImgSizeBank{
+    height: 7vw;
+  }  
+  .cardlight{
+    width: 100%;
+    height: auto;
+    /* background: #07182e; */
+    position: relative;
+    /* display: flex; */
+    /* place-content: center; */
+    /* place-items: center; */
+    overflow: hidden;
+    border-radius: 1vw;
+  }
+  .cardlight::before{
+    content: '';
+    position: absolute;
+    margin-left: -100vw;
+    width: 430%;
+    background-image: linear-gradient(180deg,#e55d87,#5fc3e4);
+    height: 530%;
+    animation: border 5s linear infinite;
+    transition: all 0.2s linear;
+  }
+  @keyframes border {
+    form{
+      transform: rotate(0deg);
+    }
+    to{
+      transform: rotate(360deg);
+    }
+  }
+  .cardlight::after{
+    content: '';
+    position: absolute;
+    background: #07182e;
+    inset: 0.2vw;
+    border-radius: 1vw;
+  }

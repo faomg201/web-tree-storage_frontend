@@ -1,0 +1,98 @@
+.HText {
+  font-size: 2vw;
+  color: #f8faff;
+  font-weight: bold;
+}
+.NameT {
+  margin-top: 1.2vw;
+  font-size: 1.2vw;
+  color: #f8faff;
+  font-weight: bold;
+}
+.NameTree {
+  font-size: 1.1vw;
+  color: #f8faff;
+}
+.ImgSizeTypeT {
+  height: 10vw;
+  width: 15vw;
+}
+.ImgSizeT {
+  height: 10vw;
+  margin-bottom: 1vw;
+}
+.SixeBox {
+  width: 10vw;
+}
+.container {
+  max-width: 80%;
+}
+
+.TextTName{
+  font-size: 1.5vw !important;
+}
+.TextTDetail{
+  font-size: 1.35vw !important;
+}
+.NumColor{
+  color: rgb(249, 249, 32);
+}
+
+.BGConHome {
+  background-image: url("../../../../assets/img/pexels-photo-807598.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+}
+
+.BGtextCon {
+  background: linear-gradient(0.25turn, #f8faff60, #1ab76e3d, #f8faff60);
+}
+
+.RdImg {
+  border-radius: 1vw;
+}
+.RdImgTd {
+  border-radius: 1vw;
+  cursor: pointer;
+}
+.BGInfoTd {
+    background: radial-gradient(circle, rgb(119, 184, 181) 0%, rgba(118, 177, 156, 0.803) 100%);
+}
+
+.tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  width: 15vw;
+  height: 10vw;
+  color: white;
+  font-size: 1.2vw;
+  background-color: #192733;
+  border-radius: 10px;
+  padding: 10px 15px 10px 15px;
+  overflow-y: scroll;
+}
+.tooltip-text::-webkit-scrollbar {
+  display: none;
+}
+.tooltip-text{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  }
+
+.hover-text:hover .tooltip-text {
+  visibility: visible;
+}
+#bottom {
+  top: 1vw;
+  left: -5vw;
+}
+.hover-text {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  margin: 0px;
+  font-family: Avenir;
+  text-align: center;
+}

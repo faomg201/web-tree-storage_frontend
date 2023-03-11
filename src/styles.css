@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+.widthButtonAdd {
+  width: 8vw;
+  font-size: 1.1vw;
+}
+.HGfont {
+  font-size: 1.5vw;
+}
+.NGfont {
+  font-size: 1.1vw;
+}
+
+body {
+  overflow-y: scroll;
+  font-family: SukhumvitSet;
+  src: url(../src/assets/fonts/SukhumvitSet-Medium.ttf) format("opentype");
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+body{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  }

@@ -1,0 +1,263 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <div class="container marGinT">
+    <div class="row">
+      <div class="col-md-6 Hfont">ประเภทต้นไม้</div>
+      <div class="col-md-6" style="text-align: right">
+        <button type="button" class="btn btn-warning Nfont" data-bs-toggle="modal" data-bs-target="#AddTypeTree">
+          เพิ่มประเภทต้นไม้
+        </button>
+      </div>
+      <div class="col-md-12">
+        <div class="container bg-light marGinT BGCONTA">
+          <div class="row text-center">
+            <div class="col-md-12">
+              <table class="table table-hover" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th style="width: 5%">ลำดับ</th>
+                    <th style="width: 25%">รูป</th>
+                    <th style="width: 20%">ชื่อ</th>
+                    <th style="width: 50%">รายละเอียด</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="
+                  let item of infoTreeype
+                    | paginate: { itemsPerPage: 6, currentPage: p };
+                  let i = index
+                ">
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                      <img src="{{SerURL}}{{
+                       item.treetype_img
+                      }}" style="width: 15vw" />
+                    </td>
+                    <td>
+                      <p>
+                        {{ item.treetype_name }}
+                      </p>
+                    </td>
+                    <td>
+                      <p>
+                        {{ item.treetype_detail }}
+                      </p>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-outline-warning DText Nfont"
+                      (click)="Open_EditTreetype()" (click)="getTreetype_Edit(item.treetype_id)"
+                      >
+                        แก้ไข
+                      </button>
+                    </td>
+                    <td><button (click)="Open_DelAccount_Model()" (click)="getTreeType_Del(item.treetype_id)"
+                        type="button" class="btn btn-outline-danger DText Nfont"><svg xmlns="http://www.w3.org/2000/svg"
+                          width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                          <path
+                            d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                        </svg></button></td>
+                        
+                  </tr>
+                </tbody>
+              </table>
+              <div align="right">
+                <pagination-controls
+                  (pageChange)="p = $event"
+                ></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<!-- Modal -->
+<div class="modal fade" id="AddTypeTree" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title HGfont" id="exampleModalLabel">เพิ่มประเภทต้นไม้</h5>
+        <button type="button" class="btn-close NGfont" data-bs-dismiss="modal" aria-label="Close"
+          (click)="resetFrom()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row-md-12">
+          <form [formGroup]="treeTypeForm">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 " style="text-align-last: center">
+                  <label class="form-label HGfont">รูปประเภทต้นไม้</label>
+                  <div class="mb-3">
+                    <div class="container">
+                      <div class="row justify-content-md-center" align="center" style="line-height: 3vw;">
+                        <label>
+                          <img class="img-thumbnail" src="../../../../../assets/img/default-placeholder.png"
+                          style="width: 20vw" *ngIf="previewLoaded == false; hidden" />
+                          <input type="file" (change)="fileChangeEvent($event)" name="imageupload" id="fileUpload"
+                            hidden />
+                        </label>
+                        <div *ngIf="imageChangedEvent"style="width: 20vw" style="width: 30vw;">
+                          <image-cropper [imageChangedEvent]="imageChangedEvent" [aspectRatio]="5/2 / 2" format="png"
+                            (imageCropped)="imageCropped($event)">
+                          </image-cropper>
+                        </div>
+                        <label>
+                          <div class="radius elevation-1 Nfont" style="height: auto; width: auto">
+                            เพิ่มรูปภาพ
+                          </div>
+                          <input type="file" (change)="fileChangeEvent($event)" name="imageupload" id="fileUpload"
+                            hidden />
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3 Nfont">
+                    <label>ชื่อประเภทต้นไม้</label>
+                    <input type="text" class="form-control Nfont" formControlName="treetype_name" />
+                  </div>
+                  <br />
+                  <div class="mb-3 Nfont">
+                    <label>รายละเอียดประเภทต้นไม้</label>
+                    <textarea class="form-control Nfont" formControlName="treetype_detail"
+                      style="height: 200px"></textarea>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col align-self-end" align="right">
+                        <br />
+                        <button type="button" class="btn btn-light widthButtonAdd elevation-1 Nfont"
+                          (click)="resetFrom()">
+                          ยกเลิก
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-warning widthButtonAdd elevation-1 Nfont" type="submit" value="Submit"
+                          (click)="createTreetype()">
+                          เพิ่ม
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="DelAccount" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <form > 
+          <div class="modal-body" *ngIf="infoTreetypeDel">ต้องการข้อมูล
+            <b>{{this.infoTreetypeDel.treetype_name}}</b> หรือไม่?</div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-light widthButtonAdd elevation-1" (click)="Close_DelAccount_Model()">
+                ยกเลิก
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-warning widthButtonAdd elevation-1"
+                (click)="deleteAcount(infoTreetypeDel.treetype_id)">
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="EditTreetype" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  data-bs-backdrop="static">
+  <div class="modal-dialog modal-xl editTydialog">
+    <div class="modal-content">
+      <form [formGroup]="treeTypeForm" *ngIf="infoAccTreetypeEdit">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-size: 1.3vw !important; font-weight: bold">
+            แก้ไขประเภทต้นไม้</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="Close_EditTreetype()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6 " style="text-align-last: center">
+              <label class="form-label HGfont">รูปประเภทต้นไม้</label>
+              <div class="mb-3">
+                <div class="container">
+                  <div class="row justify-content-md-center" align="center" style="line-height: 3vw;">
+                    <label>
+                      <img src="{{SerURL}}{{infoAccTreetypeEdit.treetype_img}}"
+                        style="width: 20vw" *ngIf="previewLoaded == false; hidden" />
+                      <input type="file" (change)="fileChangeEvent($event)" name="imageupload" id="fileUpload"
+                        hidden />
+                    </label>
+                    <div *ngIf="imageChangedEvent"style="width: 20vw">
+                      <image-cropper [imageChangedEvent]="imageChangedEvent" [aspectRatio]="5/2 / 2" format="png"
+                        (imageCropped)="imageCropped($event)">
+                      </image-cropper>
+                    </div>
+                    <label>
+                      <div class="radius elevation-1 Nfont" style="height: auto; width: auto">
+                        เพิ่มรูปภาพ
+                      </div>
+                      <input type="file" (change)="fileChangeEvent($event)" name="imageupload" id="fileUpload"
+                        hidden />
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="row"></div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3 Nfont">
+                <label>ชื่อประเภทต้นไม้</label>
+                <input type="text" class="form-control Nfont" formControlName="treetype_name" />
+              </div>
+              <br />
+              <div class="mb-3 Nfont">
+                <label>รายละเอียดประเภทต้นไม้</label>
+                <textarea class="form-control Nfont" formControlName="treetype_detail"
+                  style="height: 200px"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light widthButtonAdd elevation-1 Nfont"
+            (click)="resetEditTreetypeForm(infoAccTreetypeEdit.treetype_id)">
+            คืนค่า
+          </button>
+          &nbsp; &nbsp; &nbsp;
+          <button class="btn btn-warning widthButtonAdd elevation-1 Nfont" type="submit" value="Submit"
+            (click)="Put_Treetype(infoAccTreetypeEdit.treetype_id)">
+            บันทึก
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

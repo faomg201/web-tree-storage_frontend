@@ -1,0 +1,112 @@
+<app-loading *ngIf="loading"></app-loading>
+<app-navbarhomepage *ngIf="!loading"></app-navbarhomepage>
+<div class="BGConHome" *ngIf="!loading">
+    <div class="container BGtextCon">
+        <div class="row text-center">
+            <div class="col-12" style="margin-top: 8vw">
+                <p class="HText">ประเภทต้นไม้</p>
+
+            </div>
+            <div class="col-12" style="margin-top: 2vw">
+                <div class="row" style="position: relative;">
+                    <div class="col-3" *ngFor="let item of infoTreeype; let i = index">
+                        <img src="{{TyURl}}{{item.treetype_img}}" class="RdImg" style="width: 100%;">
+                        <div class="hover-text" >
+                            <p class="NameT">{{item.treetype_name}}</p>
+                            <span class="tooltip-text" id="bottom" >{{item.treetype_detail}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center" style="margin-top: 5vw">
+                <p class="HText">สินค้าทั้งหมด</p>
+            </div>
+            <div class="col-12" style="margin-top: 2vw">
+                <form [formGroup]="serachTree" class="row g-3" >
+                    <div class="col-md-5">
+                        <input style="font-size: 1.3vw;" class="form-control me-2" type="search" placeholder="ค้นหาต้นไม้" formControlName="nametree" />
+                    </div>
+
+                    <div class="col-md-2">
+                        <select style="font-size: 1.3vw;" class="form-select" formControlName="typetree" >
+                            <option selected value="" >ประเภทต้นไม้</option>
+                            <option *ngFor="let item of infoTreeype; let i = index" value="{{ item.treetype_name }}">
+                              {{ item.treetype_name }}
+                            </option>
+                          </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="input-group mb-3" style="text-align-last: center;">
+                            <input style="font-size: 1.3vw;" type="text" class="form-control" placeholder="ราคาต่ำสุด" formControlName="min" />
+                            <input style="font-size: 1.3vw;" type="text" class="form-control" placeholder="ราคาสูงสุด" formControlName="max" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row text-center" style="margin-top: 1vw; position: relative;">
+            <div class="col-3" *ngFor="let item of infoTreedetail| paginate: 
+            { itemsPerPage: 8, currentPage: p };let i = index">
+                <img src="{{TdURl}}{{item.treedetail_img}}" class="RdImgTd" style="width: 100%;"
+                    (click)="Op_treeDetail(item.treedetail_id)">
+                <p class="NameTree" style="margin-top: 0.5vw;">{{item.treedetail_title}}</p>
+                <p class="NameTree">ราคา {{item.treedetail_price}} บาท</p>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 2vw">
+            <div align="right">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="TreeDetail" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg ">
+        <div class="modal-content BGInfoTd" *ngIf="infoTreeypeBYID">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 TextTName" id="exampleModalLabel"><b>{{infoTreeypeBYID.treedetail_title}}
+                        #TD{{infoTreeypeBYID.treedetail_id}}</b></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetbuyorder()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center" style="position: relative;">
+                    <div class="col-md-5">
+                        <img src="{{TdURl}}{{infoTreeypeBYID.treedetail_img}}" class="RdImg" style="width: 100%;">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row justify-content-center TextTDetail" style="height: 90%;">
+                            <div class="col-md-11" style="place-self: center;"><b>ประเภทต้นไม้</b> :
+                                {{infoTreeypeBYID.treetype_name}}</div>
+                            <div class="col-md-11"><b>รายละเอียด</b> : {{infoTreeypeBYID.treedetail_detail}}</div>
+                            <div class="col-md-11 " style="align-self: self-end; text-align-last: right;">
+                                
+                                <b class="NumColor" *ngIf="infoTreeypeBYID.treedetail_quantity>0">จำนวน {{infoTreeypeBYID.treedetail_quantity}} ต้น</b>  <br>
+                                <p class="NumColor" style="color: rgb(223, 37, 37);" *ngIf="infoTreeypeBYID.treedetail_quantity<=0"><b>**สินค้าหมด**</b></p>
+                                ราคาต้นละ <b class="NumColor">{{infoTreeypeBYID.treedetail_price}}</b> บาท
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form [formGroup]="qtTdForrm">
+                <div class="row justify-content-center">
+                    <div class="col-md-7" style="text-align: -webkit-right;">
+                        <input type="number" class="form-control" aria-label="Sizing example input"
+                        style="margin-right: -5vw; width: 10vw; font-size: 1.3vw;"
+                        aria-describedby="inputGroup-sizing-default" formControlName="listorder_quantity">
+                    </div>
+                    <div class="col-md-3" style="text-align-last: right;">
+                        <button type="button" class="btn btn-warning" style="font-size: 1.3vw;"
+                        (click)="AddlistOrder(infoTreeypeBYID.treedetail_id)">เพิ่มรายการ</button>
+                    </div>                     
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>

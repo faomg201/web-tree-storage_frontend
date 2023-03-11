@@ -1,0 +1,55 @@
+.HText{
+    font-size: 2vw;
+    color: #f8faff;
+    font-weight: bold;
+}
+.DText{
+    font-size: 1.5vw;
+    color: #f8faff;
+}
+.ImgSizePreV{
+    height: 33vw;
+    float: left;
+    width: 50vw;
+}
+.TypeT{
+    text-align: -webkit-right;
+    font-weight: bold;
+    margin-top: 2vw;
+    font-size: 1.7vw;
+}
+.DetailT{
+    text-align: -webkit-left;
+    
+    font-size: 1.4vw;
+}
+.ImgSizeCon{
+    height: 4.5vw;
+    color: #f8faff;
+}
+.Contact_font{
+    font-size: 1.2vw;
+    color: #f8faff;
+}
+.container{
+    max-width: 80%;
+}
+
+.BGConHome{
+background-image: url("../../../../assets/img/pexels-photo-807598.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:100%;
+}
+
+.BGtextCon{
+    background: linear-gradient(0.25turn, #f8faff7c, #1cc4765c, #f8faff7c);
+}
+
+.RdText {
+    border-radius: 0vw 1.2vw 1.2vw 0vw;
+    background-color: #f8faffca
+}
+.RdImg{
+    border-radius: 1.2vw 0vw 0vw 1.2vw;
+}

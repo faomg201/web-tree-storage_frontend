@@ -1,0 +1,190 @@
+
+<div class="Fullpage" >
+  <app-navbar></app-navbar>
+<div class="center" style="overflow: hidden">
+  <form [formGroup]="accountForm">
+    <div class="container text-center" style="margin-top: 6vw;">
+      <div class="CardStyle">
+        <div class="container text-center">
+          <div class="row marginTH">
+            <div class="col-md-5 HText LHmar">
+              <div class="row">
+                <div class="col">สมัครสมาชิก</div>
+              </div>
+            </div>
+            <div class="col-md-6 HText RHmar">
+              <div class="row">
+                <div class="col">
+                  <div class="col-md-12 ButtonItem">
+                    <button
+                      type="button"
+                      class="btn btn btn-light DText BoxSub"
+                      (click)="resetFrom()"
+                    >
+                      คืนค่า
+                    </button>
+                    &nbsp;&nbsp;
+                    <button
+                      type="button"
+                      class="btn btn btn-light DText BoxSub"
+                      (click)="createAccount()"
+                    >
+                      ยืนยัน
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="row justify-content-md-center marginT">
+              <div class="col-md-5">
+                <label class="form-label marginTextL DText">ชื่อ</label>
+                <input
+                  type="text"
+                  class="form-control inBox"
+                  id="formGroupExampleInput"
+                  placeholder=""
+                  formControlName="user_firstname"
+                  [ngClass]="{
+                    'is-invalid': submit && a['user_firstname'].errors
+                  }"
+                />
+              </div>
+              <div class="col-md-5">
+                <label class="form-label marginTextL DText">นามสกุล</label>
+                <input
+                  type="text"
+                  class="form-control inBox"
+                  id="formGroupExampleInput"
+                  placeholder=""
+                  formControlName="user_lastname"
+                  [ngClass]="{
+                    'is-invalid': submit && a['user_lastname'].errors
+                  }"
+                />
+              </div>
+            </div>
+            <div class="row justify-content-md-center paddingBox">
+              <div class="col-md-5">
+                <label class="form-label marginTextL DText">Username</label>
+                <input
+                  type="text"
+                  class="form-control inBox"
+                  id="formGroupExampleInput"
+                  placeholder=""
+                  formControlName="user_username"
+                  [ngClass]="{
+                    'is-invalid': submit && a['user_username'].errors
+                  }"
+                />
+              </div>
+              <div class="col-md-5">
+                <label class="form-label marginTextL DText">Passowrd</label>
+                <input
+                  type="password"
+                  class="form-control inBox"
+                  id="formGroupExampleInput"
+                  placeholder=""
+                  formControlName="user_password"
+                  [ngClass]="{
+                    'is-invalid': submit && a['user_password'].errors
+                  }"
+                />
+              </div>
+            </div>
+            <div class="row justify-content-md-center paddingBox">
+              <div class="col-md-5">
+                <label class="form-label marginTextL DText">E-mail</label>
+                <input
+                  type="text"
+                  class="form-control inBox"
+                  id="formGroupExampleInput"
+                  placeholder=""
+                  formControlName="user_email"
+                  [ngClass]="{
+                    'is-invalid': submit && a['user_email'].errors
+                  }"
+                />
+              </div>
+              <div class="col-md-5">
+                <label class="form-label marginTextL DText"
+                  >Confirm Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control inBox"
+                  id="formGroupExampleInput"
+                  placeholder=""
+                  formControlName="con_user_password"
+                  [ngClass]="{
+                    'is-invalid': submit && a['con_user_password'].errors
+                  }"
+                />
+              </div>
+            </div>
+
+            <div class="row justify-content-md-center paddingBox"  style="margin-top: 1vw;">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <label class="form-label marginTextL DText"
+                  >ที่อยู่เพื่อการจัดส่ง</label
+                >
+              </div>
+              <div class="col-md-2"></div>
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <textarea
+                  class="form-control boxAdd"
+                  id="exampleFormControlTextarea1"
+                  formControlName="user_address"
+                  [ngClass]="{
+                    'is-invalid': submit && a['user_address'].errors
+                  }"
+                ></textarea>
+              </div>
+              <div class="col-md-2"></div>
+              <div class="col-md-3"></div>
+              <div class="row"  style="margin-top: 1vw;">
+                <div class="col-md-3">
+                  <input
+                    id="district"
+                    class="form-control inBoxA SeMargin DText"
+                    type="text"
+                    placeholder="ตำบล"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="amphoe"
+                    class="form-control inBoxA SeMargin DText"
+                    type="text"
+                    placeholder="อำเภอ"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="province"
+                    type="text"
+                    class="form-control inBoxA SeMargin DText"
+                    placeholder="จังหวัด"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <input
+                    id="zipcode"
+                    type="text"
+                    class="form-control inBoxA SeMargin DText"
+                    placeholder="รหัสไปรษณีย์"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+</div>

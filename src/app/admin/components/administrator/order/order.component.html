@@ -1,0 +1,340 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <div class="container marGinT">
+    <div class="row">
+      <div class="col-md-6 Hfont"></div>
+      <div class="col-md-6" style="text-align: right; font-size: 1.5vw; font-weight: bolder;">
+        รายการสั่งซื้อ
+      </div>
+      <div class="col-md-12">
+        <br>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne" *ngIf="infounpaid">
+              <button class="accordion-button fontaccord" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne">
+                รายการใหม่ ({{infounpaid.length}})
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show "
+              aria-labelledby="panelsStayOpen-headingOne">
+              <div class="container bg-light marGinT BGCONTA">
+                <div class="row text-center">
+                  <div class="col-md-12">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th style="width: 20vw;">หลักฐานการโอนเงิน</th>
+                          <th style="width: 12vw">รหัสการสั่งซื้อ</th>
+                          <th style="width: 45vw">รายละเอียดการสั่งซื้อ</th>
+                          <th style="width: 10vw">ราคารวมทั้งหมด</th>
+                          <th style="width: 10vw">สถานะ</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="
+                        let item of infounpaid let i = index">
+                          <td (click)="openImg(item.payment_id)" style="cursor: pointer;">
+                            <img src="{{payURL}}{{item.bankimg_name}}" style="width: 15vw" />
+                          </td>
+                          <td>{{ item.id_payment }}</td>
+                          <td style="text-align: -webkit-left;">{{ item.payment_order }}</td>
+                          <td>{{item.payment_sum}}</td>
+                          <td>
+                            <button type="button" class="btn btn-outline-danger" style="font-size: 1.1vw;"
+                              (click)="chStatus(item.payment_id)">{{item.payment_status}}</button>
+                          </td>
+                          <td><button (click)="Open_Delpayment()" (click)="getpaymentDel(item.payment_id)" type="button"
+                              class="btn btn-outline-danger DText Nfont"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path
+                                  d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                              </svg></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne" *ngIf="infodelivery">
+              <button class="accordion-button fontaccord collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseTwo">
+                รายการจัดส่ง ({{infodelivery.length}})
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingTwo">
+              <div class="container bg-light marGinT BGCONTA">
+                <div class="row text-center">
+                  <div class="col-md-12">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th style="width: 20vw;">หลักฐานการโอนเงิน</th>
+                          <th style="width: 12vw">รหัสการสั่งซื้อ</th>
+                          <th style="width: 30vw">รายละเอียดการสั่งซื้อ</th>
+                          <th style="width: 12vw">ราคารวมทั้งหมด</th>
+                          <th style="width: 13vw">เลขพัสดุ</th>
+                          <th style="width: 10vw">สถานะ</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="
+                        let item of infodelivery let i = index">
+                          <td (click)="openImg(item.payment_id)" style="cursor: pointer;">
+                            <img src="{{payURL}}{{item.bankimg_name}}" style="width: 15vw" />
+                          </td>
+                          <td>{{ item.id_payment }}</td>
+                          <td style="text-align: -webkit-left;">{{ item.payment_order }}</td>
+                          <td>{{item.payment_sum}}</td>
+                          <td>{{item.track_num}}</td>
+                          <td>
+                            <button type="button" class="btn btn-outline-warning" style="font-size: 1.1vw;"
+                              (click)="chStatus(item.payment_id)">{{item.payment_status}}</button>
+                          </td>
+                          <td><button (click)="Open_Delpayment()" (click)="getpaymentDel(item.payment_id)" type="button"
+                              class="btn btn-outline-danger DText Nfont"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path
+                                  d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                              </svg></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne" *ngIf="infosucceeded">
+              <button class="accordion-button fontaccord collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                aria-controls="panelsStayOpen-collapseThree">
+
+                รายการสำเร็จ ({{infosucceeded.length}})
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+              aria-labelledby="panelsStayOpen-headingThree">
+
+              <div class="container bg-light marGinT BGCONTA">
+                <div class="row text-center">
+                  <div class="col-md-12">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th style="width: 20vw;">หลักฐานการโอนเงิน</th>
+                          <th style="width: 12vw">รหัสการสั่งซื้อ</th>
+                          <th style="width: 30vw">รายละเอียดการสั่งซื้อ</th>
+                          <th style="width: 12vw">ราคารวมทั้งหมด</th>
+                          <th style="width: 13vw">เลขพัสดุ</th>
+                          <th style="width: 10vw">สถานะ</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of infosucceeded let i = index">
+                          <td (click)="openImg(item.payment_id)" style="cursor: pointer;">
+                            <img src="{{payURL}}{{item.bankimg_name}}" style="width: 15vw" />
+                          </td>
+                          <td>{{ item.id_payment }}</td>
+                          <td style="text-align: -webkit-left;">{{ item.payment_order }}</td>
+                          <td>{{item.payment_sum}}</td>
+                          <td>{{item.track_num}}</td>
+                          <td>
+                            <button disabled type="button" class="btn btn-outline-success" style="font-size: 1.1vw;"
+                              (click)="chStatus(item.payment_id)">{{item.payment_status}}</button>
+                          </td>
+                          <td><button (click)="Open_Delpayment()" (click)="getpaymentDel(item.payment_id)" type="button"
+                              class="btn btn-outline-danger DText Nfont"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path
+                                  d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                              </svg></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="modal fade" id="Delpayment" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <form>
+          <div class="modal-body" *ngIf="infopaymentDel">ต้องการรายการสินค้า
+            <b>{{this.infopaymentDel.id_payment}}</b> หรือไม่?
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-light widthButtonAdd elevation-1" (click)="Close_Delpayment()">
+                ยกเลิก
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-warning widthButtonAdd elevation-1"
+                (click)="deletePayment(infopaymentDel.payment_id)">
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OpenImg -->
+<div class="modal" tabindex="-1" id="openImg">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" *ngIf="infoOrderImg">
+      <img src="{{payURL}}{{infoOrderImg.bankimg_name}}" style="width: 100%" />
+    </div>
+  </div>
+</div>
+
+<!-- Openstatis -->
+<div class="modal fade" tabindex="-1" id="chStatus">
+  <div class="modal-dialog">
+  </div>
+  <div class="row justify-content-center" *ngIf="infostatus">
+    <div class="col-md-8">
+      <div class="row justify-content-center"
+        style="background-color: #f0f8ff00; border-radius: 1vw; padding: 1vw; font-size: 1.2vw;">
+        <div class="col-md-7 " style="font-size: 1.3vw; font-weight: bold; place-self: self-end; color: #ffffff;">
+          รหัสการสั่งซื้อ ({{infostatus.id_payment}}) </div>
+        <div class="col-md-5 " style="text-align: right;">
+          <button type="button" class="btn btn-outline-light" style="font-size: 1.3vw; width: 8vw;"
+            (click)="chStatusClose()">ยกเลิก</button>
+        </div>
+        <div class="col-md-11" style="margin-top: 1vw; border-radius: 0.5vw; background-color: #a5a5a5;">
+          <div class="row" style="padding: 1vw;">
+            <div class="col-md-4" style="place-self: center;">
+              <div class="row">
+                <div class="col-md-4" style="text-align: right; text-align: right; font-weight: bold;">unpaid:
+                </div>
+                <div class="col-md-8">รายการใหม่</div>
+                <div class="col-md-4" style="text-align: right; text-align: right; font-weight: bold;">delivery:
+                </div>
+                <div class="col-md-8">รายการเตรียมจัดส่ง</div>
+                <div class="col-md-4" style="text-align: right; text-align: right; font-weight: bold;">succeeded:
+                </div>
+                <div class="col-md-8">รายสำเร็จ</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-md-10" style="font-weight: bold;">
+                  สถานะ: {{infostatus.payment_status}}</div>
+                <div class="col-md-11">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentStatus" id="unpaid" value="unpaid"
+                      (click)="putStatus('unpaid',infostatus.payment_id)" [(ngModel)]="isUnpaid">
+                    <label class="form-check-label" for="unpaid">
+                      unpaid
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentStatus" id="delivery" value="delivery"
+                      (click)="putStatus('delivery',infostatus.payment_id)" [(ngModel)]="isDelivery">
+                    <label class="form-check-label" for="delivery">
+                      delivery
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paymentStatus" id="succeeded" value="succeeded"
+                      (click)="putStatus('succeeded',infostatus.payment_id)" [(ngModel)]="isSucceeded">
+                    <label class="form-check-label" for="succeeded">
+                      succeeded
+                    </label>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5" style="place-self: center;">
+              <div class="row" style="text-align: center;">
+                <form [formGroup]="trackForm">
+                  <div class="col-md-10" style="font-weight: bold;">
+                    เลขติดตามพัสดุ</div>
+                  <div *ngIf="infostatus.track_num==null" class="col-md-10"><input type="text" class="form-control"
+                      formControlName="track_num" placeholder="เพิ่มเลขติดตามพัสดุ" style="margin-top: 0.5vw;">
+                  </div>
+                  <div *ngIf="infostatus.track_num==null" class="col-md-10">
+                    <button type="button" style="font-size: 1vw; margin-top: 0.5vw; width: 10vw;"
+                      class="btn btn-outline-dark" (click)="AddTrack(infostatus.payment_id)">เพิ่ม</button>
+                  </div>
+                  <div *ngIf="infostatus.track_num!==null" class="col-md-10">
+                    <input *ngIf="editMode==false" [disabled]="!editMode" type="text" class="form-control"
+                      placeholder="{{infostatus.track_num}}" style="margin-top: 0.5vw;">
+                    <input *ngIf="editMode==true" type="text" class="form-control" formControlName="track_num"
+                      placeholder="{{infostatus.track_num}}" style="margin-top: 0.5vw;">
+                  </div>
+                  <div *ngIf="infostatus.track_num!==null" class="col-md-10">
+                    <button *ngIf="editMode==false" type="button"
+                      style="font-size: 1vw; margin-top: 0.5vw; width: 10vw;" class="btn btn-outline-light"
+                      (click)="onClickEdit()">แก้ไข</button>
+                    <button *ngIf="editMode==true" type="button" style="font-size: 1vw; margin-top: 0.5vw; width: 10vw;"
+                      class="btn btn-outline-warning" (click)="AddTrack(infostatus.payment_id)">ยืนยัน</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 0.5vw;">
+
+        </div>
+      </div>
+
+    </div>
+
+
+
+  </div>
+  <!-- allow status -->
+  <div class="modal fade" id="allowS" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body" *ngIf="infostatus">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-8" style="font-size: 1vw;">
+              ต้องการเปลี่ยนสถานะเป็น <b>{{valST}} </b>หรือไม่?
+            </div>
+            <div class="col-md-4" style="display: grid;" style="display: block;">
+              <button type="button" style="font-size: 1vw;" class="btn btn-outline-warning"
+                (click)="cancel()">ยกเลิก</button> &nbsp;
+              <button type="button" style="font-size: 1vw;" class="btn btn-outline-dark"
+                (click)="allowS(valST,infostatus.payment_id)">ตกลง</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

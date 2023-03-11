@@ -1,0 +1,456 @@
+<div class="container text-center sticky-top navbar-expand-lg" style="margin-top: -7vw;">
+  <nav class="navbar sticky-top navbar-expand-lg BGNav">
+    <div class="container-fluid">
+      <ul class="navbar-nav ">
+        <li class="nav-item ">
+          <a class="nav-link active FontHNav" aria-current="page" href="home" *ngIf="infoAboutme"><i
+              class="bi bi-person-circle "></i>&nbsp;{{this.infoAboutme.aboutme_name}}</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ">
+        <li class="nav-item">
+          <a class="nav-link active FontNav" aria-current="page" href="home">หน้าแรก</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active FontNav" aria-current="page" href="allproduct">สินค้าทั้งหมด</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active FontNav" aria-current="page" href="howtobuyproduct">วิธีการสั่งซื้อสินค้า</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <ul class="navbar-nav" *ngIf="!UserN;hidden">
+          <li class="nav-item">
+            <a class="nav-link active FontNav" aria-current="page" href="login"><i
+                class="bi bi-person-circle"></i>&nbsp;เข้าสู่ระบบ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active FontNav" aria-current="page" href="signup"><i
+                class="bi bi-person-circle"></i>&nbsp;สมัครสมาชิก</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav" *ngIf="UserN;hidden">
+          <li class="nav-item">
+
+            <a class="nav-link active FontNav" aria-current="page">
+              <div class="dropdown ">
+                <button class="dropbtn ">Username: {{this.UserN}}
+                  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" *ngFor="
+        let item of infolistorder let i = index">
+                    {{i+1}}
+                    <span class="visually-hidden">unread messages</span>
+                  </span>
+                </button>
+                <div class="dropdown-content" style="cursor: pointer;">
+                  <a (click)="Open_infoUser()">ข้อมูลผู้ใช้งาน</a>
+                  <a data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                    aria-controls="offcanvasRight">รายการสั่งซื้อสินค้า</a>
+                  <a (click)="Open_Oderstatus()">สถานะสินค้า</a>
+                  <a (click)="logout()">ออกจากระบบ</a>
+                </div>
+              </div>
+            </a>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="Oderstatus" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog Oederdialog modal-xl">
+    <div class="modal-content OederBGdialog">
+      <div class="modal-header" style="padding: 0.5vw; justify-content: center; ">
+        <h1 class="modal-title fs-5"><b style="font-size: 1.4vw; color: black;">สถานะสินค้า</b></h1>
+      </div>
+      <div class="modal-body">
+        <div class="contaner" *ngIf="infoUser">
+          <div class="row justify-content-center Ordersc">
+            <div class="col-md-12">
+              <div class="row" style="border-bottom: double ;border-top: double; background: #00000017 !important;">
+                <div class="col-md-2">รายการสั่งซื้อ</div>
+                <div class="col-md-4">รายละเอียด</div>
+                <div class="col-md-2">ราคารวม</div>
+                <div class="col-md-2">เลขพัสดุ</div>
+                <div class="col-md-2">สถานะ</div>
+              </div>
+              <div class="row rowHover" *ngFor="let item of infoPament let i = index">
+                <div class="col-md-2" style="place-self: center;"> {{item.id_payment}}</div>
+                <div class="col-md-4 scrollorder" style="place-self: center; padding: 1vw">{{item.payment_order}}</div>
+                <div class="col-md-2" style="place-self: center;">{{item.payment_sum}} บาท</div>
+                <div *ngIf="item.track_num!=null" class="col-md-2" style="place-self: center;">{{item.track_num}}</div>
+                <div *ngIf="item.track_num==null" class="col-md-2" style="place-self: center; color: red;">------</div>
+                <div *ngIf="item.payment_status === 'unpaid'" class="col-md-2" style="place-self: center;">
+                  <button disabled type="button" class="btn btn-danger">กำลังตรวจสอบ</button>
+                </div>
+                <div *ngIf="item.payment_status === 'delivery'" class="col-md-2" style="place-self: center;">
+                  <button disabled type="button" class="btn btn-warning">ทำการจัดส่ง</button>
+                </div>
+                <div *ngIf="item.payment_status === 'succeeded'" class="col-md-2" style="place-self: center;">
+                  <button disabled type="button" class="btn btn-success">รายการสำเร็จ</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="infoUser" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog BotLdialog modal-xl">
+    <div class="modal-content BGdialog">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 textHcontent" id="infoUser"><b style="font-size: 1.4vw;">ข้อมูลผู้ใช้งาน</b></h1>
+        <button type="button" class="btn btn-light" style="font-size: 1.4vw;" (click)="OpEditInforUser()">แก้ไข</button>
+      </div>
+      <div class="modal-body">
+        <div class="contaner" *ngIf="infoUser">
+          <div class="row textcontent justify-content-center" style="line-height: 3vw; font-size: 1.3vw;">
+            <div class="col-md-11"><b>ชื่อผู้ใช้งาน</b> : {{infoUser.user_username}}</div>
+            <div class="col-md-11"><b>อีเมล</b> : {{infoUser.user_email}}</div>
+            <div class="col-md-11"><b>ชื่อ</b> : {{infoUser.user_firstname}} {{infoUser.user_lastname}}</div>
+            <div class="col-md-11"><b>ที่อยู่</b> : {{infoUser.user_address}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ListOder -->
+<div class="offcanvas offcanvas-end bgpayment" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel" style="font-size: 1.8vw; font-weight: bolder;">
+      รายการสั่งซื้อของ {{this.UserN}}</h5>
+
+  </div>
+  <div class="offcanvas-body scroOderpay">
+    <table class="table table-hover "
+      style="background: linear-gradient(#2aa06970, #16d17a76); margin-top: -1vw; font-size: 1.3vw;">
+      <thead class="borderTh">
+        <tr>
+          <th scope="col">เลขรายการสั่งซื้อ*</th>
+          <th scope="col">รหัสสินค้า</th>
+          <th scope="col">ชื่อ</th>
+          <th scope="col">ราคาต้นละ</th>
+          <th scope="col">จำนวน</th>
+          <th scope="col">ราคารวม</th>
+          <th scope="col"></th>
+          <th scope="col">ชำระเงิน</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="
+        let item of infolistorder let i = index">
+          <th scope="row">USwts{{item.user_id}}00{{item.listorder_id}}</th>
+          <td>TD{{item.treedetail_id}}</td>
+          <td>{{item.treedetail_title}}</td>
+          <td>{{item.treedetail_price}}</td>
+          <td>{{item.listorder_quantity}}</td>
+          <td>{{item.listorder_sumprice}} บาท</td>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-trash3 Bins" viewBox="0 0 16 16"
+              (click)="delListorder(item.listorder_id)">
+              <path
+                d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+            </svg>
+          </td>
+          <td>
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" style="cursor: pointer;"
+              (click)="readyPay(item.listorder_id)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="container"
+      style="background: linear-gradient(#16d17a76, #2aa06970);line-height: 3vw; margin-top: -0.5vw; font-size: 1.3vw; font-weight: bold;">
+      <div class="row borderSum">
+        <div class="col-md-9 "></div>
+        <div class="col-md-3 " style="text-align-last: center;">ราคารวมทั้งหมด {{this.sum}} บาท</div>
+
+      </div>
+    </div>
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+      <div class="accordion-item" style="background: none;">
+        <h2 class="accordion-header" id="flush-headingOne" style="line-height: 2.8vw; margin-top: 0.5vw; ">
+          <button *ngIf="myArray.length > 0" type="button" class="buttonPay" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseOne" (click)="payment()">แจ้งชำระเงิน ({{this.myArray.length}})</button>
+          <button *ngIf="myArray.length === 0" type="button" class="buttonPay disabled">แจ้งชำระเงิน
+            ({{this.myArray.length}})</button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse border bg-light"
+          [ngClass]="{'show': myArray.length > 0, 'collapsed': myArray.length <= 0}">
+          <div class="accordion-body">
+            <div class="container text-center">
+              <div class="row" style="justify-content: center;padding: 0.5vw;">
+                <div class="col-md-10" style="margin-top: 0.6vw">
+                  <p class="InText">รายละเอียดการโอนเงิน</p>
+                  <div class="row" *ngFor="let item of infobank let i = index" style="margin-top: 0.5vw">
+                    <div class="col-md-2" style="text-align: -webkit-left;">
+                      <img *ngIf="item.aboutmebank_name=='ธนาคารกรุงไทย'" src="../../../../assets/img/KTB.png"
+                        class="ImgSizeBank" />
+                      <img *ngIf="item.aboutmebank_name=='ธนาคารกรุงเทพ'" src="../../../../assets/img/BangkokBank.png"
+                        class="ImgSizeBank" />
+                      <img *ngIf="item.aboutmebank_name=='ธนาคารกสิกรไทย'" src="../../../../assets/img/KBANK.png"
+                        class="ImgSizeBank" />
+                      <img *ngIf="item.aboutmebank_name=='ธนาคารไทยพาณิชย์'" src="../../../../assets/img/SCB.png"
+                        class="ImgSizeBank" />
+                      <img *ngIf="item.aboutmebank_name=='ธนาคารออมสิน'" src="../../../../assets/img/GSB.png"
+                        class="ImgSizeBank" />
+                    </div>
+                    <div class="col-md-5 marginTextB">
+                      <p class="BankText">ชื่อธนาคาร : {{item.aboutmebank_name}}</p>
+                      <p class="BankText">ชื่อผู้ขาย : <b>{{item.aboutmebank_op_fname}}
+                          {{item.aboutmebank_op_lname}}</b></p>
+                    </div>
+                    <div class="col-md-5 marginRightTextB">
+                      <p class="BankText"><b>{{item.aboutmebank_number}}</b> เลขบัญชีธนาคาร</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="justify-content: center;">
+                <div class="col-md-11" style="margin-top: 2vw">
+                  <div class="row text-start" style="justify-content: center;" *ngIf="true; hidden">
+                    <div class="col-md-12"
+                      style="background-color: rgba(213, 213, 213, 0.467);padding: 1vw;border-radius: 0.5vw;">
+                      <div class="class" style="text-align-last: center">
+                        <p class="HText">แจ้งชำระเงิน</p>
+                      </div>
+                      <div class="class container bg-warin">
+                        <div class="row justify-content-center" style="font-size: 1.35vw;">
+                          <div class="col-md-12" style="text-align-last: right;font-weight: bold; margin-right: 1.8vw;">
+                            รายการชำระเงิน {{this.id_pament}}
+                          </div>
+                          <div class="row" style="text-align-last: center; font-weight: bold; line-height: 2.5vw;">
+                            <div class="col-md-3">เลขรายการสั่งซื้อ</div>
+                            <div class="col-md-2">รหัสสินค้า</div>
+                            <div class="col-md-3">ชื่อ</div>
+                            <div class="col-md-1">ราคา</div>
+                            <div class="col-md-1">จำนวน</div>
+                            <div class="col-md-2" style="text-align-last: right;">ราคารวม</div>
+                          </div>
+                          <div class="row" style="text-align-last: center;" *ngFor="let item of myArray let i = index">
+                            <div class="col-md-3">USwts{{item.order.user_id}}00{{item.order.listorder_id}}</div>
+                            <div class="col-md-2">TD{{item.order.treedetail_id}}</div>
+                            <div class="col-md-3">{{item.order.treedetail_title}}</div>
+                            <div class="col-md-1">{{item.order.treedetail_price}}</div>
+                            <div class="col-md-1">{{item.order.listorder_quantity}}</div>
+                            <div class="col-md-2" style="text-align-last: right;">{{item.order.listorder_sumprice}} บาท
+                            </div>
+                          </div>
+                          <div class="row" style="text-align-last: center;font-weight: bold; line-height: 2.5vw;">
+                            <div class="col-md-8 border"></div>
+                            <div class="col-md-4 border" style="text-align-last: right;">ราคารวมทั้งหมด {{this.sum}} บาท
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <form [formGroup]="paymentForm">
+                    <div class="row text-start" style="justify-content: center; margin-top: 2.5vw;">
+                      <div class="col-md-md-8 ">
+                        <div class="col-md-md-12">
+                          <label for="formFile" class="form-label" style="font-size: 1.3vw;">หลักฐานการโอน<b
+                              style="color: red;">*****</b></label>
+
+                        </div>
+                        <div class="col-md-md-10 GapPay2 ">
+                          <div class="modal-body">
+                            <div class="row justify-content-md-center" align="center">
+                              <label>
+                                <img class="img-thumbnail" src="../../../../assets/img/default-placeholder.png"
+                                  style="width: 25vw; cursor: pointer;" *ngIf="previewLoaded == false; hidden" />
+                                <input type="file" (change)="fileChangeEvent($event)" name="imageupload" hidden />
+                              </label>
+                              <div *ngIf="imageChangedEvent" style="width: 25vw">
+                                <image-cropper [imageChangedEvent]="imageChangedEvent" copperStaticHeight='1111'
+                                  format="png" (imageCropped)="imageCropped($event)" [disabled]="true"
+                                  [containWithinAspectRatio]="true">
+                                </image-cropper>
+                              </div>
+                              <label style="margin-top: 1vw;">
+                                <div class="radius elevation-1 Nfont"
+                                  style="height: auto; width: auto ;font-size: 1.4vw; cursor: pointer;">
+                                  เลือกรูปภาพ
+                                </div>
+                                <input type="file" (change)="fileChangeEvent($event)" name="imageupload" hidden />
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row text-start" style="justify-content: center;">
+                      <div class="col-md-md-5 ">
+                        <div class="col-md-md-12">
+                          <label for="formFile" class="form-label" style="font-size: 1.3vw;">เลขรายการสั่งซื้อ<b
+                              style="color: red;">*</b></label>
+                          <input disabled class="form-control" type="text" id="formFile"
+                            style="font-size: 1.3vw; font-weight: bolder;" placeholder="{{this.id_pament}}">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row text-center" style="justify-content: center;">
+                      <div class="col-md-12" style="margin-top: 5vw">
+                        <p class="InDetailText">กรุณาตรวจทานรายละเอียดให้ถูกต้องอีกครั้ง ก่อนยืนยันการแจ้งชำระเงิน</p>
+                      </div>
+                      <div class="col-md-12" style="margin-top: 1vw">
+                        <button type="button" class="btn btn-outline-success" style="font-size: 1.4vw;"
+                          (click)="paymentNoti()">แจ้งชำระเงิน</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+<div class="modal fade" id="infoEditUser" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-xl editTddialog">
+    <div class="modal-content BGeditDialog">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">แก้ไขข้อมูลผู้ใช้งาน</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="ClEditInforUser()"></button>
+      </div>
+      <div class="modal-body fontSeditUser">
+        <div class="container ">
+          <form [formGroup]="EditUserForm">
+            <div class="row justify-content-md-center" style="line-height: 2vw;">
+              <div class="col-md-5">
+                <div class="md-5 row">
+                  <label for="staticEmail" class="col-sm-2 col-form-label fontSeditUserR">Username</label>
+                  <div class="col-sm-10">
+                    <fieldset disabled>
+                      <input type="text" class="form-control fontSeditUser" formControlName="user_username">
+                    </fieldset>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-2 col-form-label fontSeditUserR">E-mail</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control fontSeditUser" formControlName="user_email">
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-5">
+                <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-2 col-form-label fontSeditUserR">ชื่อ</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control fontSeditUser" formControlName="user_firstname">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-2 col-form-label fontSeditUserR">นามสกุล</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control fontSeditUser" formControlName="user_lastname">
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row justify-content-md-center paddingBox" style="margin-top: 1vw;">
+                <div class="col-md-10">
+                  <label class="form-label">ที่อยู่เพื่อการจัดส่ง</label>
+                </div>
+                <div class="col-md-10">
+                  <textarea class="form-control boxAdd fontSeditUser" id="exampleFormControlTextarea1"
+                    formControlName="user_address"></textarea>
+                </div>
+                <div class="row justify-content-md-center" style="margin-top: 1vw;">
+                  <label class="col-sm-1 col-form-label" style="text-align: right;width: 5vw;">ตำบล :</label>
+                  <div class="col-sm-2" style="width: 8vw">
+                    <input id="district" class="form-control inBoxA SeMargin fontSeditUser " type="text" 
+                      placeholder="ตำบล" />
+                  </div>
+                  <label class="col-sm-1 col-form-label" style="text-align: right;width: 5vw;">อำเภอ :</label>
+                  <div class="col-sm-2" style="width: 10.5vw">
+                    <input id="amphoe" class="form-control inBoxA SeMargin fontSeditUser" type="text" 
+                      placeholder="อำเภอ" />
+                  </div>
+                  <label class="col-sm-1 col-form-label" style="text-align: right;width: 6vw;">จังหวัด :</label>
+                  <div class="col-sm-2" style="width: 10vw">
+                    <input id="province" type="text" class="form-control inBoxA SeMargin fontSeditUser" 
+                      placeholder="จังหวัด" />
+                  </div>
+                  <label class="col-sm-1 col-form-label" style="text-align: right;width: 8vw;">รหัสไปรษณีย์ :</label>
+                  <div class="col-sm-2" style="width: 7vw">
+                    <input id="zipcode" type="text" class="form-control inBoxA SeMargin fontSeditUser" 
+                      placeholder="รหัสไปรษณีย์" />
+                  </div>
+                </div>
+                <div class="col-md-10" style="margin-top: 1vw;">
+                  <button class="btn btn-light fontSeditUser" type="button" (click)="tog()">
+                    เปลี่ยนรหัสผ่าน
+                  </button>
+                  <div class="collapse submidRepass" #infoEditUserRepass>
+                    <form [formGroup]="RepassUserForm">
+                      <div class="input-group mb-3 ">
+                        <span class="input-group-text wdspanInputRe fontSeditUserP"
+                          id="basic-addon1">รหัสผ่านเดิม</span>
+                        <input type="password" class="form-control fontSeditUserP " placeholder="original password"
+                          formControlName="ori_password">
+                      </div>
+                      <div class="input-group mb-3 ">
+                        <span class="input-group-text wdspanInputRe fontSeditUserP"
+                          id="basic-addon1">รหัสผ่านใหม่</span>
+                        <input type="password" class="form-control fontSeditUserP" placeholder="new password"
+                          formControlName="new_password">
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text wdspanInputRe fontSeditUserP"
+                          id="basic-addon1">ยืนยันรหัสผ่าน</span>
+                        <input type="password" class="form-control fontSeditUserP" placeholder="confirm password"
+                          formControlName="con_password">
+                      </div>
+                      <button class="btn btn-warning fontSeditUser " type="button" (click)="RepassUser()">
+                        ยืนยัน
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                <div style="margin-top: 0.5vw;">
+
+                </div>
+
+
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light widthButtonAdd elevation-1 Nfont"
+            (click)="resetinfoUserEditForm()">
+            คืนค่า
+          </button>
+          &nbsp; &nbsp; &nbsp;
+          <button class="btn btn-warning widthButtonAdd elevation-1 Nfont" type="submit" value="Submit"
+            (click)="Put_infoUserEdit()">
+            บันทึก
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

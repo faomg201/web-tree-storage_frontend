@@ -1,0 +1,90 @@
+<app-loading *ngIf="loading"></app-loading>
+<app-navbarhomepage *ngIf="!loading"></app-navbarhomepage>
+
+<div *ngIf="!loading" id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true" >
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+
+    <button *ngFor="let item of infoImgSlider?.slice(1); let k = index" type="button"
+      data-bs-target="#carouselExampleIndicators" [attr.data-bs-slide-to]="k+1"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{AbImgURL}}{{this.infoImgSliderfArray}}" class="" style="width: 100%;">
+    </div>
+    <div class="carousel-item" *ngFor="let item of infoImgSlider?.slice(1); let j = index">
+      <img src="{{AbImgURL}}{{item.aboutmeimg_name}}" class="" style="width: 100%;">
+
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<div class="BGConHome" *ngIf="!loading">
+  <div class="container text-center BGtextCon" >
+    <div class="row justify-content-center" *ngIf="infoAboutme">
+      <div class="col-md-9" style="margin-top: 2vw;">
+        <p class="HText">{{this.infoAboutme.aboutme_name}}</p>
+        <p class="DText">
+          {{this.infoAboutme.aboutme_detail}}
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center" *ngFor="
+              let item of infoTreeype; let i = index" style="position: relative; margin-top: 2vw;">
+      <div class="col-md-4 ">
+          <img src="{{SerURL}}{{item.treetype_img}}" class="RdImg" style="width: 100%;">
+      </div>
+      <div class="col-md-6 RdText" >
+        <p class="TypeT">{{item.treetype_name}}</p>
+              <p class="DetailT">{{item.treetype_detail}}</p>
+      </div>
+    </div>
+    <div class="col-12" style="margin-top: 5vw;">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p class="HText">ติดต่อ</p>
+          </div>
+        </div>
+        <div class="row" *ngIf="infoAboutme">
+          <div class="col-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="ImgSizeCon bi bi-telephone"
+              viewBox="0 0 16 16">
+              <path
+                d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+            </svg>
+            <p style="margin-top: 1vw;" class="Contact_font"><b>Tel.</b> {{this.infoAboutme.aboutme_tel}}</p>
+          </div>
+          <div class="col-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="ImgSizeCon bi bi-envelope"
+              viewBox="0 0 16 16">
+              <path
+                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+            </svg>
+            <p style="margin-top: 1vw;" class="Contact_font"><b>E-mail</b> {{this.infoAboutme.aboutme_email}}</p>
+          </div>
+          <div class="col-4">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="ImgSizeCon bi bi-line"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 0c4.411 0 8 2.912 8 6.492 0 1.433-.555 2.723-1.715 3.994-1.678 1.932-5.431 4.285-6.285 4.645-.83.35-.734-.197-.696-.413l.003-.018.114-.685c.027-.204.055-.521-.026-.723-.09-.223-.444-.339-.704-.395C2.846 12.39 0 9.701 0 6.492 0 2.912 3.59 0 8 0ZM5.022 7.686H3.497V4.918a.156.156 0 0 0-.155-.156H2.78a.156.156 0 0 0-.156.156v3.486c0 .041.017.08.044.107v.001l.002.002.002.002a.154.154 0 0 0 .108.043h2.242c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157Zm.791-2.924a.156.156 0 0 0-.156.156v3.486c0 .086.07.155.156.155h.562c.086 0 .155-.07.155-.155V4.918a.156.156 0 0 0-.155-.156h-.562Zm3.863 0a.156.156 0 0 0-.156.156v2.07L7.923 4.832a.17.17 0 0 0-.013-.015v-.001a.139.139 0 0 0-.01-.01l-.003-.003a.092.092 0 0 0-.011-.009h-.001L7.88 4.79l-.003-.002a.029.029 0 0 0-.005-.003l-.008-.005h-.002l-.003-.002-.01-.004-.004-.002a.093.093 0 0 0-.01-.003h-.002l-.003-.001-.009-.002h-.006l-.003-.001h-.004l-.002-.001h-.574a.156.156 0 0 0-.156.155v3.486c0 .086.07.155.156.155h.56c.087 0 .157-.07.157-.155v-2.07l1.6 2.16a.154.154 0 0 0 .039.038l.001.001.01.006.004.002a.066.066 0 0 0 .008.004l.007.003.005.002a.168.168 0 0 0 .01.003h.003a.155.155 0 0 0 .04.006h.56c.087 0 .157-.07.157-.155V4.918a.156.156 0 0 0-.156-.156h-.561Zm3.815.717v-.56a.156.156 0 0 0-.155-.157h-2.242a.155.155 0 0 0-.108.044h-.001l-.001.002-.002.003a.155.155 0 0 0-.044.107v3.486c0 .041.017.08.044.107l.002.003.002.002a.155.155 0 0 0 .108.043h2.242c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157H11.81v-.589h1.525c.086 0 .155-.07.155-.156v-.56a.156.156 0 0 0-.155-.157H11.81v-.589h1.525c.086 0 .155-.07.155-.156Z" />
+            </svg>
+            <p style="margin-top: 1vw;" class="Contact_font"><b>Line</b> {{this.infoAboutme.aboutme_line}}</p>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+    
+
+  </div>
+
+</div>

@@ -1,0 +1,118 @@
+.CardStyle {
+  width: 27vw;
+  height: 63vh;
+  display: -webkit-inline-box;
+  border: unset;
+  box-shadow: 2px 2px #bcbcbcb0;
+  border-radius: 1vw;
+  background: linear-gradient(184deg, rgba(255,255,255,0.9697128851540616) 0%, rgba(213, 212, 212, 0.975) 100%);
+}
+.inBox {
+  width: 18vw;
+}
+.HText {
+  font-size: 1.6vw;
+}
+.DText {
+  font-size: 1.2vw;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+}
+
+.bgPview {
+  height: 20vw;
+  width: 100%;
+  z-index: -1;
+}
+.PosiRE {
+  position: relative;
+}
+.PosAb {
+  position: absolute;
+}
+.MarginTop {
+  margin-top: -11vw;
+}
+.GapNav {
+  gap: 10vw;
+}
+.FontHNav {
+  font-size: 1.3vw;
+  color: #ffffff !important;
+}
+.FontNav {
+  font-size: 1.2vw;
+  color: #ffffff !important;
+}
+
+.dropbtn {
+  background-color: #198754;
+  color: white;
+  width: 12vw;
+  height: 100%;
+  font-size: 1.2vw;
+  border: none;
+  cursor: pointer;
+  vertical-align: -webkit-baseline-middle;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 12vw;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  font-size: 1.1vw;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #347a37;
+}
+
+/* .Fullpage{
+    margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+    
+  } */
+.Fullpage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9697128851540616) 0%,
+    rgba(187, 187, 187, 0.945) 100%
+  );
+}
+.fpass{
+  cursor: pointer;
+    
+    font-size: 1vw;
+}
+.fpass:hover{
+  text-decoration: underline;
+  color: red;
+  transition: 0.5s;
+}

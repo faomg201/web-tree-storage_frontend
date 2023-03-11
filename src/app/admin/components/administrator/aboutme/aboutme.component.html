@@ -1,0 +1,323 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <div class="container marGinT" style="margin-bottom: 2vw">
+    <div class="row">
+      <div class="col-md-6 Hfont">เกี่ยวกับเรา</div>
+      <div class="col-md-12">
+        <div class="container bg-light marGinT BGCONTA">
+          <div class="row">
+            <div class="col-md-6 text-center" style="margin-top: 1vw; margin-bottom: 1vw">
+              <p class="sHfont"><b>รูปภาพสไลด์</b></p>
+              <div class="row justify-content-md-center" align="center">
+                <!-- <label (click)="Open_AddAboutImg()">
+                  <img class="img-thumbnail" src="../../../../../assets/img/default-placeholder.png"
+                    style="height: 15vw; width: 20vw" />
+                </label> -->
+                <label style="margin-top: 1vw;">
+                  <button type="button" class="btn btn-warning Nfont" data-bs-toggle="modal"
+                    (click)="Open_AddAboutImg()">เพิ่มรูปภาพ</button>
+                </label>
+              </div>
+              <div class="container text-center" style="margin-top: 1vw;">
+                <div class="row align-items-start lineSimg">
+                  <div class="col delBotImg zoom" *ngFor="let item of infoImgAbMe let j = index">
+                    <div class="boxImg">
+                      <img src="{{AbImgURL}}{{item.aboutmeimg_name}}" style="width: 10vw; height: auto;" />
+                      <div class="delImg" (click)="Open_DelAboutImg()" (click)="getImgID_Del(item.aboutmeimg_id)">
+                        ลบ
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-6" style="margin-top: 1vw; margin-bottom: 1vw">
+              <form [formGroup]="AboutmeForm">
+                <div class="mb-3 Nfont">
+                  <label>ชื่อเว็บ</label>
+                  <input type="text" class="form-control Nfont" formControlName="aboutme_name" />
+                </div>
+                <div class="mb-3 Nfont">
+                  <label>รายละเอียด</label>
+                  <textarea class="form-control Nfont" formControlName="aboutme_detail" placeholder=""
+                    id="floatingTextarea2" style="height: 8vw"></textarea>
+                </div>
+                <div class="mb-3 Nfont">
+                  <label>โทร</label>
+                  <input type="text" class="form-control Nfont" formControlName="aboutme_tel" />
+                </div>
+                <div class="mb-3 Nfont">
+                  <label>อีเมล</label>
+                  <input type="text" class="form-control Nfont" formControlName="aboutme_email" />
+                </div>
+                <div class="mb-3 Nfont">
+                  <label>ไลน์</label>
+                  <input type="text" class="form-control Nfont" formControlName="aboutme_line" />
+                </div>
+                <div class="mb-3 Nfont">
+                  <div class="row">
+                    <div class="col align-self-end" align="right">
+                      <br />
+                      <button type="button" class="btn btn-light widthButtonAdd elevation-1 "
+                        style="background-color: #ffffff;" (click)="resetAboutmeFrom()">
+                        คืนค่า
+                      </button>
+                      &nbsp; &nbsp; &nbsp;
+                      <button class="btn btn-warning widthButtonAdd elevation-1" type="submit" value="Submit"
+                        (click)="PutAboutme()">
+                        บันทึก
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div class="mb-3 Nfont">
+                <div class="row">
+                  <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed fontaccord " type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"
+                          style="border-radius: 0.5vw;">
+                          บัญชีธนาคาร
+                        </button>
+
+                      </h2>
+                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                        data-bs-parent="#accordionFlushExample">
+                        <div class="col-md-12">
+                          <div class="container text-center">
+                            <div class="row align-items-start">
+
+                              <div class="col">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">ลำดับ</th>
+                                      <th scope="col">ชื่อธนาคาร</th>
+                                      <th scope="col">ชื่อผู้เปิดบัญชี</th>
+                                      <th scope="col">เลขบัญชี</th>
+                                      <th>
+                                        <div class="col-md-12" style="text-align-last: right;">
+                                          <button class="btn btn-light widthAdd elevation-1" type="submit"
+                                            value="Submit" (click)="Open_Addbank()">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1.5vw" height="1.5vw"
+                                              fill="currentColor" class="bi bi-plus-square-dotted" viewBox="0 0 16 16">
+                                              <path
+                                                d="M2.5 0c-.166 0-.33.016-.487.048l.194.98A1.51 1.51 0 0 1 2.5 1h.458V0H2.5zm2.292 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zm1.833 0h-.916v1h.916V0zm1.834 0h-.917v1h.917V0zm1.833 0h-.917v1h.917V0zM13.5 0h-.458v1h.458c.1 0 .199.01.293.029l.194-.981A2.51 2.51 0 0 0 13.5 0zm2.079 1.11a2.511 2.511 0 0 0-.69-.689l-.556.831c.164.11.305.251.415.415l.83-.556zM1.11.421a2.511 2.511 0 0 0-.689.69l.831.556c.11-.164.251-.305.415-.415L1.11.422zM16 2.5c0-.166-.016-.33-.048-.487l-.98.194c.018.094.028.192.028.293v.458h1V2.5zM.048 2.013A2.51 2.51 0 0 0 0 2.5v.458h1V2.5c0-.1.01-.199.029-.293l-.981-.194zM0 3.875v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 5.708v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zM0 7.542v.916h1v-.916H0zm15 .916h1v-.916h-1v.916zM0 9.375v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .916v.917h1v-.917H0zm16 .917v-.917h-1v.917h1zm-16 .917v.458c0 .166.016.33.048.487l.98-.194A1.51 1.51 0 0 1 1 13.5v-.458H0zm16 .458v-.458h-1v.458c0 .1-.01.199-.029.293l.981.194c.032-.158.048-.32.048-.487zM.421 14.89c.183.272.417.506.69.689l.556-.831a1.51 1.51 0 0 1-.415-.415l-.83.556zm14.469.689c.272-.183.506-.417.689-.69l-.831-.556c-.11.164-.251.305-.415.415l.556.83zm-12.877.373c.158.032.32.048.487.048h.458v-1H2.5c-.1 0-.199-.01-.293-.029l-.194.981zM13.5 16c.166 0 .33-.016.487-.048l-.194-.98A1.51 1.51 0 0 1 13.5 15h-.458v1h.458zm-9.625 0h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zm1.834-1v1h.916v-1h-.916zm1.833 1h.917v-1h-.917v1zm1.833 0h.917v-1h-.917v1zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                                            </svg>
+                                          </button>
+
+                                        </div>
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor=" let item of infoBank let i = index ">
+                                      <td>{{i+1}}</td>
+                                      <td>{{item.aboutmebank_name}}</td>
+                                      <td>{{item.aboutmebank_op_fname}} {{item.aboutmebank_op_lname}}</td>
+                                      <td>{{item.aboutmebank_number}}</td>
+                                      <td><button type="button" class="btn btn-outline-danger DText Nfont"
+                                          (click)="Open_DelBank()" (click)="getBankID_Del(item.aboutmebank_id)">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="1vw" height="1vw"
+                                            fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                            <path
+                                              d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                                          </svg></button></td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="AddAboutImg" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1"
+  data-bs-backdrop="static">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel"
+          style="font-size: 1.2vw !important; font-weight: bold;">เพิ่มรูปภาพสไลด์</h1>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-md-center" align="center">
+          <label>
+            <img class="img-thumbnail" src="../../../../../assets/img/default-placeholder.png"
+              style="width: 25vw" *ngIf="previewLoaded == false; hidden" />
+            <input type="file" (change)="fileChangeEvent($event)" name="imageupload" id="fileUpload" hidden />
+          </label>
+          <div *ngIf="imageChangedEvent" style="width: 25vw">
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [aspectRatio]="8 / 1 / 1/ 1" format="png"
+              (imageCropped)="imageCropped($event)">
+            </image-cropper>
+          </div>
+          <label style="margin-top: 1vw;">
+            <div class="radius elevation-1 Nfont" style="height: auto; width: auto">
+              เลือกรูปภาพ
+            </div>
+            <input type="file" (change)="fileChangeEvent($event)" name="imageupload" id="fileUpload" hidden />
+          </label>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col align-self-end" align="right">
+          <br />
+          <button type="button" class="btn btn-light widthButtonAdd elevation-1 Nfont" (click)="Close_AddAboutImg()">
+            ยกเลิก
+          </button>
+          &nbsp; &nbsp; &nbsp;
+          <button class="btn btn-warning widthButtonAdd elevation-1 Nfont" type="submit" value="Submit"
+            (click)="AddAboutImg()">
+            เพิ่ม
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="AddBank" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  data-bs-backdrop="static">
+  <div class="modal-dialog modal-lg bankdialog">
+    <div class="modal-content">
+      <form [formGroup]="BankForm">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-size: 1.3vw !important; font-weight: bold">
+            เพิ่มบัญชีธนาคาร</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="Close_Addbank()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row" style="place-content: center;">
+            <div class="col-md-6">
+              <label>ชื่อธนาคาร</label>
+              <select class="form-select" formControlName="aboutmebank_name">
+                <option value="ธนาคารกรุงเทพ">ธนาคารกรุงเทพ</option>
+                <option value="ธนาคารกสิกรไทย">ธนาคารกสิกรไทย</option>
+                <option value="ธนาคารกรุงไทย">ธนาคารกรุงไทย</option>
+                <option value="ธนาคารไทยพาณิชย์">ธนาคารไทยพาณิชย์</option>
+                <option value="ธนาคารออมสิน">ธนาคารออมสิน</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>เลขบัญชี</label>
+              <input type="text" class="form-control Nfont" formControlName="aboutmebank_number" />
+            </div>
+          </div>
+          <div class="row" style="place-content: center; margin-top: 0.5vw;">
+            <div class="col-md-6">
+              <label>ชื่อ</label>
+              <input type="text" class="form-control Nfont" formControlName="aboutmebank_op_fname" />
+            </div>
+            <div class="col-md-6">
+              <label>นามสกุล</label>
+              <input type="text" class="form-control Nfont" formControlName="aboutmebank_op_lname" />
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light widthButtonAdd elevation-1 Nfont" (click)="Close_Addbank()">
+            ยกเลิก
+          </button>
+          &nbsp; &nbsp; &nbsp;
+          <button class="btn btn-warning widthButtonAdd elevation-1 Nfont" type="submit" value="Submit"
+            (click)="Add_Bank()">
+            เพิ่ม
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="DelAboutImg" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <form>
+          <br />
+          <div class="modal-body">ต้องการลบ <b>รูปภาพ</b> หรือไม่?</div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-light widthButtonAdd elevation-1" (click)="Close_DelAboutImg()">
+                ยกเลิก
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-warning widthButtonAdd elevation-1"
+                (click)="deleteImgID_Del(infoImgAbMeDel.aboutmeimg_id)">
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="DelBank" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <form>
+          <div class="modal-body" *ngIf="infoBankDel">ต้องการลบบัญชี
+            <br>
+            <b>{{this.infoBankDel.aboutmebank_name}}</b> ของ <b>{{this.infoBankDel.aboutmebank_op_fname}}</b>
+            <br>
+            หรือไม่?
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-light widthButtonAdd elevation-1" (click)="Close_DelBank()">
+                ยกเลิก
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-warning widthButtonAdd elevation-1"
+                (click)="deleteBankID_Del(infoBankDel.aboutmebank_id)">
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

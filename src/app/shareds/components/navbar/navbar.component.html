@@ -1,0 +1,86 @@
+<div *ngIf="pathNLogin !== '/admin/administrator/account'
+          &&pathNLogin !== '/admin/administrator/aboutme' 
+          &&pathNLogin !== '/admin/administrator/treetype' 
+          &&pathNLogin !== '/admin/administrator/treedetail' 
+          &&pathNLogin !== '/admin/administrator/order'
+          &&pathNLogin !== '/login'  
+hidden">
+<nav class="navbar sticky-top navbar-expand-lg bg-success" >
+    <div class="container-fluid">
+      <ul class="navbar-nav ">
+        <li class="nav-item ">
+          <a class="nav-link active FontHNav" aria-current="page" href="home"><i
+              class="bi bi-person-circle "></i>&nbsp;WebTreeStrage</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <ul class="navbar-nav" *ngIf="true;hidden">
+          <li class="nav-item">
+            <a class="nav-link active FontNav" aria-current="page" href="login"><i
+                class="bi bi-person-circle"></i>&nbsp;เข้าสู่ระบบ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active FontNav" aria-current="page" href="signup"><i
+                class="bi bi-person-circle"></i>&nbsp;สมัครสมาชิก</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav" *ngIf="true,hidden">
+          <div class="dropdown">
+            <button class="dropbtn">'UserName'</button>
+            <div class="dropdown-content">
+            <a href="userinformation/userinfo/userinfoma">ข้อมูลผู้ใช้งาน</a>
+            <!-- <a href="userinformation/userinfo/order">รายการสั่งซื้อสินค้า</a> -->
+            <a href="userinformation/userinfo/waitingpay">รอชำระเงิน</a>
+            <a href="userinformation/userinfo/productstatus">สถานะสินค้า</a>
+            </div>
+          </div>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="" *ngIf="pathNLogin !== '/login'&&pathNLogin !== '/signup'; hidden">
+  <!-- <div class="" > -->
+    <div class="PosiRE">
+      <img class="bgPview" src="../../../../assets/img/default-placeholder.png" alt="">
+      <div class="container text-center PosAb">
+        <div class="row MarginTop">
+          <div class="col align-self-start">
+            IMG
+          </div>
+          <div class="col align-self-end">
+            IMG
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <nav class="navbar  navbar-expand-lg bg-success">
+        <div class="container-fluid" style="margin-left: 5vw;">
+          <ul class="navbar-nav GapNav">
+            <li class="nav-item">
+              <a class="nav-link active FontNav" aria-current="page" href="home">หน้าแรก</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active FontNav" aria-current="page" href="allproduct">สินค้าทั้งหมด</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active FontNav" aria-current="page" href="howtobuyproduct">วิธีการสั่งซื้อสินค้า</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active FontNav" aria-current="page" href="payment">แจ้งชำระเงิน</a>
+            </li>
+          </ul>
+          <div class="d-flex" style="margin-right: 5vw;">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active FontNav" aria-current="page" href="contactus">ติดต่อเรา</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+  

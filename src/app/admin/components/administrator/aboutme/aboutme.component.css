@@ -1,0 +1,85 @@
+div.content {
+  margin-left: 4vw;
+  padding: 1px 16px;
+  height: 100%;
+}
+.marGinT {
+  margin-top: 1vw;
+}
+.Hfont {
+  font-size: 1.5vw;
+}
+.Nfont {
+  font-size: 1.1vw;
+}
+.BGCONTA {
+  box-shadow: 2px 2px #bcbcbcb0;
+  border-radius: 10px;
+}
+td {
+  text-align: center;
+  vertical-align: middle;
+}
+table {
+  font-size: 1.1vw;
+}
+
+.fontaccord {
+  font-size: 1.1vw;
+  font-weight: bold;
+  background-color: rgba(150, 188, 188, 0.584);
+}
+
+.widthAdd {
+  margin-top: 0.5vw;
+  /* font-size: 1.5vw; */
+  /* width: 2vw; */
+  /* background-color: rgba(150, 188, 188, 0.584); */
+}
+
+.bankdialog {
+  position: fixed;
+  top: auto;
+  right: 1vw;
+  left: auto;
+  bottom: 0;
+  font-size: 1.1vw;
+}
+.delBotImg {
+  text-align: -webkit-center;
+  margin-top: 0.5vw;
+}
+.delImg {
+  margin-top: 0.5vw;
+  width: 10vw;
+  border-radius: 0.4vw;
+  font-size: 1.1vw;
+  background-color: rgb(243, 216, 106);
+}
+.delImg:hover {
+  background-color: rgba(255, 204, 0, 0.825);
+  transition: 1s;
+  cursor: pointer;
+}
+
+.zoom:hover {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Safari 3-8 */
+  transform: scale(2.2); 
+}
+
+@media screen and (max-width: 700px) {
+  div.content {
+    margin-left: 0;
+  }
+}
+.lineSimg{
+  line-height: 2vw;
+}
+.boxImg{
+  box-shadow: 2px 0px 10px 5px #00000029;
+  border-radius: 1vw;
+  width: 10vw;
+  height: 5vw;
+  background-color: rgb(182, 182, 182);
+}

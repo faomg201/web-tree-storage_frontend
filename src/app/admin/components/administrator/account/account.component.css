@@ -1,0 +1,47 @@
+div.content {
+    margin-left: 4vw;
+    padding: 1px 16px;
+    height: 100%;
+  }
+  .marGinT {
+    margin-top: 1vw;
+  }
+  .Hfont {
+    font-size: 1.5vw;
+  }
+  .Nfont {
+    font-size: 1.1vw;
+  }
+  .BGCONTA{
+    box-shadow: 2px 2px #bcbcbcb0;
+    border-radius: 10px;
+  }
+  td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  table {
+    font-size: 1.1vw;
+  }
+  @media screen and (max-width: 700px) {
+    div.content {
+      margin-left: 0;
+    }
+  }
+  
+  .fontaccord{
+    font-size: 1.1vw;
+    font-weight: bold;
+    background-color: rgba(164, 169, 169, 0.584);
+    
+  }
+
+  .AdminAccdialog {
+    position: fixed;
+    top: auto;
+    right: 1vw;
+    left: auto;
+    bottom: 0;
+    font-size: 1.1vw;
+  }
+ 

@@ -1,0 +1,303 @@
+.bgPview {
+  height: 20vw;
+  width: 100%;
+  z-index: -1;
+}
+.PosiRE {
+  position: relative;
+}
+.PosAb {
+  position: absolute;
+}
+.MarginTop {
+  margin-top: -11vw;
+}
+.GapNav {
+  gap: 10vw;
+}
+.FontHNav {
+  font-size: 1.3vw;
+  color: #ffffff !important;
+}
+.FontNav {
+  font-size: 1.2vw;
+  color: #ffffff !important;
+}
+.bgBadge{
+  background-color: rgba(202, 202, 201, 0.516);
+  border-radius:1vw ;
+  transition: 0.5s;
+}
+.bgBadge:hover{
+  background-color: #f1f1f1;
+  border-radius:1vw ;
+  transition: 0.5s;
+}
+
+.FontNav:hover {
+  background-color: rgba(202, 202, 201, 0.516);
+  border-radius:1vw ;
+  transition: 0.5s;
+}
+.BGNav {
+  background: linear-gradient(#157c4c, #0faa62b6);
+  border-radius: 0vw 0vw 1.2vw 1.2vw;
+}
+
+.dropbtn {
+  background-color: #19875400;
+  color: white;
+  width: 12vw;
+  font-size: 1.2vw;
+  border: none;
+  cursor: pointer;
+  vertical-align: -webkit-baseline-middle;
+}
+.dropbtn:hover{
+  color: #161716;
+  transition: 0.5s;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 12vw;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  font-size: 1.1vw;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #8aaa8c00;
+}
+
+.Oederdialog {
+  width: 80vw;
+  position: fixed;
+  top: auto;
+  right: 1vw;
+  left: auto;
+  bottom: 0;
+  font-size: 1.1vw;
+}
+.OederBGdialog{
+  background: radial-gradient(circle, rgb(220, 220, 220) 0%, rgba(231, 231, 231, 0.947)48%, rgb(201, 201, 201) 100%);
+}
+
+.scrollorder {
+  height: 6vw; 
+  text-align: left; 
+  font-size: 1.1vw; 
+  line-height: 1.6vw;
+  overflow-y: scroll; /* Add the ability to scroll */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollorder::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollorder {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.Ordersc{
+  line-height: 3vw; 
+  font-size: 1.3vw; 
+  color: black; 
+  text-align: center; 
+  margin-top: -1vw; 
+  height: 20vw;
+  overflow-y: scroll;
+
+}
+.scroOderpay{
+  overflow-y: scroll;
+}
+.scroOderpay::-webkit-scrollbar {
+  display: none;
+}
+.scroOderpay{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  }
+.Ordersc::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.Ordersc {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+.rowHover:hover{
+  cursor: pointer;
+  background: #0000002d;
+  transition: 0.5s;
+}
+
+.BotLdialog {
+  width: 50vw;
+  position: fixed;
+  top: auto;
+  right: 1vw;
+  left: auto;
+  bottom: 0;
+  font-size: 1.1vw;
+}
+.BGdialog{
+  background: linear-gradient(#157c4c, #0faa62dd);
+}
+
+.textHcontent{
+  font-size: 1.3vw;
+  color: #f9f9f9;
+}
+
+.textcontent{
+  font-size: 1.2vw;
+  color: #f9f9f9;
+}
+
+.editTddialog {
+  position: fixed;
+  top: auto;
+  right: 1vw;
+  left: auto;
+  bottom: 0;
+  font-size: 1.1vw;
+}
+.BGeditDialog{
+  background: linear-gradient(180deg, rgba(240,240,240,1) 0%, rgba(158,185,190,0.9529061624649859) 58%, rgba(190, 189, 189, 0.97) 100%);
+}
+.wdspanInputRe{
+  width: 8.5vw
+}
+.fontSeditUser{
+  font-size: 1vw !important;
+}
+.fontSeditUserP{
+  font-size: 0.9vw !important;
+}
+.fontSeditUserR{
+  font-size: 1vw !important;
+  text-align-last: right;
+}
+.submidRepass{
+  text-align: center;
+  line-height: -1vw;
+  margin-top: 0.5vw;
+}
+.borderSum{
+  border-bottom: double;
+}
+.borderTh{
+  border-top: double;
+}
+.Bins{
+  width: 1.3vw;
+  cursor: pointer;
+  color: rgba(239, 38, 38, 0.812);
+}
+.Bins:hover{
+  color: rgba(255, 5, 5, 0.893);
+  transition: 0.5s;
+}
+
+table{
+  text-align-last: center;
+}
+.Hbutpay{
+    float: right !important;
+}
+.buttonPay{
+  border: none;
+  border-radius: 0.5vw;
+  width: 15vw;
+  font-size: 1.5vw;
+  /* font-weight: bold; */
+  color: #f9f9f9;
+  background: linear-gradient(#157c4c9e, #0faa6293);
+}
+.buttonPay:hover{
+  background: linear-gradient(#157c4c, #0faa62b6);
+  transition: 0.5s;
+}
+/* payment */
+.HText{
+  font-size: 2vw;
+}
+.DText{
+  font-size: 1.2vw;
+}
+.InText{
+  font-size: 1.3vw;
+  text-align: start;
+}
+.ImgSizeBank{
+  height: 7vw;
+}
+.ImgSizeSlip{
+  height: 25vw;
+
+}
+.Nfont:hover{
+  transition: 0.5s;
+  color: #2c2b2b;
+  font-weight: bold;
+}
+.BankText{
+  font-size: 1.2vw;
+  margin-top: unset;
+  margin-bottom: unset;
+}
+.marginTextB{
+  margin-block: auto;
+  display: grid;
+  grid-row-gap: 1vw;
+  text-align: -webkit-left;
+}
+.marginRightTextB{
+  margin-top: 4vw;
+  display: grid;
+  grid-row-gap: 1vw;
+  text-align: -webkit-right;
+}
+.GapPay{
+  display: grid;
+  grid-row-gap: 2vw;
+}
+.GapPay2{
+  margin-top: 1vw;
+  text-align-last: center;
+}
+.InDetailText{
+  font-size: 1.1vw;
+  text-align: center;
+}
+.bgpayment{
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9697128851540616) 0%,
+    rgba(187, 187, 187, 0.945) 100%
+  );
+  width: 80%
+}
+.wdadBox{
+  width: 5vw;
+}

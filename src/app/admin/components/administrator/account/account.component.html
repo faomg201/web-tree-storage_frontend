@@ -1,0 +1,420 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <div class="container marGinT">
+    <div class="row">
+      <div class="col-md-6 Hfont"></div>
+      <div class="col-md-6" style="text-align: right;">
+        <button type="button" class="btn btn-warning Nfont" data-bs-toggle="modal"
+          (click)="Open_AddminAcc()">เพิ่มบัญชีผู้ดูแลระบบ</button>
+      </div>
+      <div class="col-md-12">
+        <br>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed fontaccord" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+                บัญชีผู้ดูแล
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse  collapse show" aria-labelledby="flush-headingOne"
+              data-bs-parent="#accordionFlushExample">
+              <div class="container bg-light marGinT BGCONTA">
+                <div class="row text-center">
+                  <div class="col-md-12">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col-1">ลำดับ</th>
+                          <th scope="col-4">ชื่อผู้ใช้</th>
+                          <th scope="col-4">ชื่อ-นามสกุล</th>
+                          <th scope="col-1">อีเมล</th>
+                          <th scope="col-1"></th>
+                          <th scope="col-1"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="
+                        let item of infoAdminAcc let i = index">
+                          <td>Admin_ID{{ item.accadmin_id }}</td>
+                          <td>{{ item.accadmin_name }}</td>
+                          <td>{{ item.accadmin_firstname }} {{ item.accadmin_lastname }}</td>
+                          <td>{{item.accadmin_email}}</td>
+                          <td><button type="button" class="btn btn-outline-warning DText Nfont"
+                              (click)="Open_EditAdmin()" (click)="getAdminID_Edit(item.accadmin_id)"
+                              *ngIf="item.accadmin_name == this.Adminname;hidden">
+                              แก้ไข</button></td>
+                          <td><button (click)="Open_DelAccount_Admin()" (click)="getAdminID_Del(item.accadmin_id)"
+                              type="button" class="btn btn-outline-danger DText Nfont" *ngIf="item.accadmin_name == this.Adminname;hidden"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path
+                                  d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                              </svg></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+              <button class="accordion-button collapsed fontaccord" type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo" aria-expanded="true" aria-controls="flush-collapseTwo">
+                บัญชีผูู้ใช้งาน
+              </button>
+            </h2>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-collapseTwo"
+              data-bs-parent="#accordionFlushExample">
+              <div class="container bg-light marGinT BGCONTA">
+                <div class="row text-center">
+                  <div class="col-md-12">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th scope="col-1">ลำดับ</th>
+                          <th scope="col-4">ชื่อผู้ใช้</th>
+                          <th scope="col-4">ชื่อ-นามสกุล</th>
+                          <th scope="col-1">อีเมล</th>
+                          <th scope="col-1"></th>
+                          <th scope="col-1"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="
+                        let item of infoUserAcc
+                          | paginate: { itemsPerPage: 5, currentPage: p };
+                        let j = index
+                      ">
+                          <td>User_ID{{ item.user_id }}</td>
+                          <td>{{ item.user_username }}</td>
+                          <td>{{ item.user_firstname }} {{ item.user_lastname }}</td>
+                          <td>{{item.user_email}}</td>
+                          <td><button type="button" class="btn btn-outline-warning DText Nfont"
+                              (click)="Open_EditUser()" (click)="getUserID_Edit(item.user_id)">
+                              แก้ไข</button></td>
+                          <td><button (click)="Open_DelAccount_Model()" (click)="getUserID_Del(item.user_id)"
+                              type="button" class="btn btn-outline-danger DText Nfont"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-trash3" viewBox="0 0 16 16">
+                                <path
+                                  d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                              </svg></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div align="right">
+                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+
+<!-- Modal -->
+<div class="modal fade" id="AddminAcc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title HGfont" id="exampleModalLabel">เพิ่มบัญชี</h5>
+        <button type="button" class="btn-close NGfont" data-bs-dismiss="modal" (click)="Close_AddminAcc()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row-md-12">
+          <form [formGroup]="AdmimaccountForm">
+            <div class="card-body NGfont">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ชื่อผู้ใช้งาน</label>
+                    <input type="text" class="form-control" formControlName="accadmin_name" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>รหัสผ่านเข้าใช้งาน</label>
+                    <input type="password" class="form-control" formControlName="accadmin_password" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>อีเมล</label>
+                    <input type="text" class="form-control" formControlName="accadmin_email" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ยืนยันรหัสผ่านเข้าใช้งาน</label>
+                    <input type="password" aria-label="First name" class="form-control"
+                      formControlName="con_accadmin_password" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ชื่อจริง</label>
+                    <input type="text" class="form-control" formControlName="accadmin_firstname" />
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>นามสกุล</label>
+                    <input type="text" class="form-control" formControlName="accadmin_lastname" />
+                  </div>
+                  <div class="col-md-12">
+                    <br />
+                    <br />
+                    <div class="row">
+                      <div class="col align-self-end" align="right">
+                        <button type="button" class="btn btn-light widthButtonAdd elevation-1 Nfont"
+                          (click)="Close_AddminAcc()">
+                          ยกเลิก
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn btn-warning widthButtonAdd elevation-1 Nfont" type="submit" value="Submit"
+                          (click)="createAddminAcc()">
+                          เพิ่ม
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="DelAccount" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <form>
+          <div class="modal-body" *ngIf="infoUserAccDel">ต้องการลบบัญชี
+            <b>{{this.infoUserAccDel.user_username}}</b> หรือไม่?
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-light widthButtonAdd elevation-1" (click)="Close_DelAccount_Model()">
+                ยกเลิก
+              </button>
+            </div>
+            <div class="col-md-4 ">
+              <button type="button" class="btn btn-warning widthButtonAdd elevation-1"
+                (click)="deleteAcount(infoUserAccDel.user_id)">
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="DelAccountAdmin" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <form>
+          <div class="modal-body" *ngIf="infoAccAdminDel">ต้องการลบบัญชี
+            <b>{{this.infoAccAdminDel.accadmin_name}}</b> หรือไม่?
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+          </div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-light widthButtonAdd elevation-1" (click)="Close_DelAccount_Admin()">
+                ยกเลิก
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button type="button" class="btn btn-warning widthButtonAdd elevation-1"
+                (click)="deleteAcountAdmin(infoAccAdminDel.accadmin_id)">
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="EditAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  data-bs-backdrop="static">
+  <div class="modal-dialog modal-xl AdminAccdialog">
+    <div class="modal-content">
+      <form [formGroup]="EditAdminForm" *ngIf="infoAccAdminEdit">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-size: 1.3vw !important; font-weight: bold">
+            แก้ไขบัญชีผู้ดูแล</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="Close_EditAdmin()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row-md-12">
+            <div class="card-body NGfont">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ชื่อผู้ใช้งาน</label>
+                    <fieldset disabled>
+                      <input type="text" class="form-control" formControlName="accadmin_name" />
+                    </fieldset>
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>อีเมล</label>
+                    <input type="text" class="form-control" formControlName="accadmin_email" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ชื่อจริง</label>
+                    <input type="text" class="form-control" formControlName="accadmin_firstname" />
+                  </div>
+
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>นามสกุล</label>
+                    <input type="text" class="form-control" formControlName="accadmin_lastname" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>รหัสผ่าน</label>
+                    <input type="password" class="form-control" formControlName="accadmin_password" />
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ยืนยันรหัสผ่าน</label>
+                    <input type="password" aria-label="First name" class="form-control"
+                      formControlName="con_accadmin_password" />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light widthButtonAdd elevation-1 Nfont"
+            (click)="resetEditAdminForm(infoAccAdminEdit.accadmin_id)">
+            คืนค่า
+          </button>
+          &nbsp; &nbsp; &nbsp;
+          <button class="btn btn-warning widthButtonAdd elevation-1 Nfont" type="submit" value="Submit"
+            (click)="Put_Accadmin(infoAccAdminEdit.accadmin_id)">
+            บันทึก
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="EditUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+  data-bs-backdrop="static">
+  <div class="modal-dialog modal-xl AdminAccdialog">
+    <div class="modal-content">
+      <form [formGroup]="EditUserForm" *ngIf="infoAccUserEdit">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-size: 1.3vw !important; font-weight: bold">
+            แก้ไขบัญชีผู้ใช้งาน</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="Close_EditAdmin()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row-md-12">
+            <div class="card-body NGfont">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ชื่อผู้ใช้งาน</label>
+                    <fieldset disabled>
+                      <input type="text" class="form-control" formControlName="user_username" />
+                    </fieldset>
+
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>อีเมล</label>
+                    <fieldset disabled>
+                      <input type="text" class="form-control" formControlName="user_email" />
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ชื่อจริง</label>
+                    <input type="text" class="form-control" formControlName="user_firstname" />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>นามสกุล</label>
+                    <input type="text" class="form-control" formControlName="user_lastname" />
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <textarea class="form-control boxAdd" id="exampleFormControlTextarea1"
+                    formControlName="user_address"></textarea>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light widthButtonAdd elevation-1 Nfont"
+            (click)="resetEditUserForm(infoAccUserEdit.user_id)">
+            คืนค่า
+          </button>
+          &nbsp; &nbsp; &nbsp;
+          <button class="btn btn-warning widthButtonAdd elevation-1 Nfont" type="submit" value="Submit"
+            (click)="Put_User(infoAccUserEdit.user_id)">
+            บันทึก
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="Fullpage">
+    <app-navbar></app-navbar>
+    <div class=" center">
+        <div class="container text-center" style="margin-top: 5vw;">
+
+            <div class="row" style="justify-content: center">
+                <div class="card CardStyle">
+                    <div class="card-body" style="margin: auto;">
+                        <h5 class="HText">เข้าสู่ระบบ</h5><br>
+                        <form [formGroup]="loginForm">
+                            <input type="text" class="form-control inBox" formControlName="user_username"
+                                placeholder="UserName">
+
+                            <br>
+                            <input type="password" class="form-control inBox" formControlName="user_password"
+                                placeholder="Password">
+                            <br>
+                            <span class="fpass" (click)="Open_fPass()">ลืมรหัสผ่าน?</span>
+                            <br>
+
+                            <br>
+                            <button type="button" class="btn btn-secondary DText" (click)="login()">เข้าสู่ระบบ</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="fPass" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form [formGroup]="sendEmailForm">
+                    <div class="row g-4 align-items-center">
+                        <div class="col-md-2">
+                            <label for="inputPassword6" class="col-form-label">อีเมล</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="email" placeholder="กรอกอีเมลเพื่อเปลี่ยนรหัสผ่าน" class="form-control"
+                                formControlName="send_Email">
+                        </div>
+                        <div class="col-md-3" style="display: grid;">
+                            <button type="button" class="btn btn-outline-secondary" (click)="sendEmail()">ส่ง</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
